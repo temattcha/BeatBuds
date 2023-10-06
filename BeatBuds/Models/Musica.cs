@@ -1,4 +1,6 @@
-﻿namespace BeatBuds.Models;
+﻿using System;
+using System.Collections.Generic;
+namespace BeatBuds.Models;
 
 public class Musica
 {
