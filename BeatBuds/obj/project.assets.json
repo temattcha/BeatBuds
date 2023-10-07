@@ -2056,24 +2056,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dell\\.nuget\\packages\\": {}
+    "/Users/mateusoliveira/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dell\\Documents\\ProjetoVisual\\BeatBuds\\BeatBuds\\BeatBuds.csproj",
+      "projectUniqueName": "/Users/mateusoliveira/Arquivos/Aulas/Diogo/BeatBuds/BeatBuds/BeatBuds.csproj",
       "projectName": "BeatBuds",
-      "projectPath": "C:\\Users\\Dell\\Documents\\ProjetoVisual\\BeatBuds\\BeatBuds\\BeatBuds.csproj",
-      "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dell\\Documents\\ProjetoVisual\\BeatBuds\\BeatBuds\\obj\\",
+      "projectPath": "/Users/mateusoliveira/Arquivos/Aulas/Diogo/BeatBuds/BeatBuds/BeatBuds.csproj",
+      "packagesPath": "/Users/mateusoliveira/.nuget/packages/",
+      "outputPath": "/Users/mateusoliveira/Arquivos/Aulas/Diogo/BeatBuds/BeatBuds/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/mateusoliveira/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "/usr/local/share/dotnet/sdk/7.0.306/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2124,7 +2125,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.414\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.306/RuntimeIdentifierGraph.json"
       }
     }
   }
