@@ -11,4 +11,6 @@ public class MusicaPlaylist
     // Propriedades de navegação para a música e a playlist correspondentes
     public Musica Musica { get; set; }
     public Playlist Playlist { get; set; }
+
+    public int Id { get; set; }
 }
