@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BeatBuds.Models;
 using BeatBuds.Data; // Substitua pelo namespace correto
 
-[Route("api/[controller]")]
+[Route("api/playlist")]
 [ApiController]
 public class PlaylistController : ControllerBase
 {
