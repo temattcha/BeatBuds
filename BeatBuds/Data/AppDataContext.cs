@@ -10,6 +10,9 @@ public class AppDataContext : DbContext
     }
 
     public DbSet<Musica> Musica { get; set; }
-    public DbSet<AvaliacaoPlaylist> AvaliacaoPlaylist { get; set; }
+    public DbSet<AvaliacaoPlaylist> AvaliacaoPlaylist { get; set;}
+    public DbSet<MusicaPlaylist> MusicaPlaylist { get; set; }
+    public DbSet<Playlist> Playlist { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
 
 }

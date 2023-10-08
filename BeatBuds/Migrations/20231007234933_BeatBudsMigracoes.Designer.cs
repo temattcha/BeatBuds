@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeatBuds.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20231007003917_BeatBudsMigracoes")]
+    [Migration("20231007234933_BeatBudsMigracoes")]
     partial class BeatBudsMigracoes
     {
         /// <inheritdoc />
@@ -145,7 +145,7 @@ namespace BeatBuds.Migrations
 
                     b.HasIndex("UsuarioId");
 
-                    b.ToTable("Usuario");
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("BeatBuds.Models.AvaliacaoPlaylist", b =>

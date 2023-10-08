@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "C:\\Users\\Dell\\Documents\\ProjetoVisual\\BeatBuds\\BeatBuds\\BeatBuds.csproj": {}
   },
   "projects": {
@@ -13,19 +12,6 @@
         "projectPath": "C:\\Users\\Dell\\Documents\\ProjetoVisual\\BeatBuds\\BeatBuds\\BeatBuds.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Dell\\Documents\\ProjetoVisual\\BeatBuds\\BeatBuds\\obj\\",
-=======
-    "C:\\Users\\Dell\\Documents\\Ambiente\\BeatBuds\\BeatBuds\\BeatBuds.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\Dell\\Documents\\Ambiente\\BeatBuds\\BeatBuds\\BeatBuds.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\Documents\\Ambiente\\BeatBuds\\BeatBuds\\BeatBuds.csproj",
-        "projectName": "BeatBuds",
-        "projectPath": "C:\\Users\\Dell\\Documents\\Ambiente\\BeatBuds\\BeatBuds\\BeatBuds.csproj",
-        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\Documents\\Ambiente\\BeatBuds\\BeatBuds\\obj\\",
->>>>>>> 9bcd88f570bfba5990950de211f80dd36de6e498
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -94,11 +80,7 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
-=======
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.414\\RuntimeIdentifierGraph.json"
->>>>>>> 9bcd88f570bfba5990950de211f80dd36de6e498
         }
       }
     }
