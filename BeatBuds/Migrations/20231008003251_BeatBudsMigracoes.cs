@@ -11,7 +11,7 @@ namespace BeatBuds.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Usuarios",
+                name: "Usuario",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -23,11 +23,11 @@ namespace BeatBuds.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Usuarios", x => x.Id);
+                    table.PrimaryKey("PK_Usuario", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Usuarios_Usuarios_UsuarioId",
+                        name: "FK_Usuario_Usuario_UsuarioId",
                         column: x => x.UsuarioId,
-                        principalTable: "Usuarios",
+                        principalTable: "Usuario",
                         principalColumn: "Id");
                 });
 
@@ -47,9 +47,9 @@ namespace BeatBuds.Migrations
                 {
                     table.PrimaryKey("PK_Musica", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Musica_Usuarios_UsuarioId",
+                        name: "FK_Musica_Usuario_UsuarioId",
                         column: x => x.UsuarioId,
-                        principalTable: "Usuarios",
+                        principalTable: "Usuario",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -68,9 +68,9 @@ namespace BeatBuds.Migrations
                 {
                     table.PrimaryKey("PK_Playlist", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Playlist_Usuarios_UsuarioId",
+                        name: "FK_Playlist_Usuario_UsuarioId",
                         column: x => x.UsuarioId,
-                        principalTable: "Usuarios",
+                        principalTable: "Usuario",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -95,9 +95,9 @@ namespace BeatBuds.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AvaliacaoPlaylist_Usuarios_UsuarioId",
+                        name: "FK_AvaliacaoPlaylist_Usuario_UsuarioId",
                         column: x => x.UsuarioId,
-                        principalTable: "Usuarios",
+                        principalTable: "Usuario",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -159,8 +159,8 @@ namespace BeatBuds.Migrations
                 column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Usuarios_UsuarioId",
-                table: "Usuarios",
+                name: "IX_Usuario_UsuarioId",
+                table: "Usuario",
                 column: "UsuarioId");
         }
 
@@ -180,7 +180,7 @@ namespace BeatBuds.Migrations
                 name: "Playlist");
 
             migrationBuilder.DropTable(
-                name: "Usuarios");
+                name: "Usuario");
         }
     }
 }

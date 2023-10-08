@@ -142,7 +142,7 @@ namespace BeatBuds.Migrations
 
                     b.HasIndex("UsuarioId");
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("Usuario");
                 });
 
             modelBuilder.Entity("BeatBuds.Models.AvaliacaoPlaylist", b =>
