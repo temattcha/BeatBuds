@@ -10,6 +10,6 @@ public class AvaliacaoPlaylist
     public int Classificacao { get; set; }
     
     // Propriedades de navegação para a playlist e o usuário correspondentes
-    public Playlist Playlist { get; set; }
-    public Usuario Usuario { get; set; }
+    public Playlist? Playlist { get; set; }
+    public Usuario? Usuario { get; set; }
 }

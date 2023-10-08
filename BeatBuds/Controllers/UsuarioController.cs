@@ -1,4 +1,5 @@
 ﻿using BeatBuds.Data;
+using BeatBuds.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeatBuds.Controllers;
@@ -14,6 +15,24 @@ private readonly AppDataContext _context;
     {
         _context = context;
     }
+
+    [HttpGet]
+    [Route("listar")]
+    public IActionResult Listar()
+    {
+        try
+        {
+            List<Usuario> usuarios =
+                _context.Usuario
+                .ToList();
+            return Usuario.Count == 0 ? NotFound() : Ok(usuarios);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
 
 
 }
