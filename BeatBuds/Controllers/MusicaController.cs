@@ -5,8 +5,8 @@ using BeatBuds.Data;
 
 namespace BeatBuds.Controllers
 {
-    [Route("api/musica")]
     [ApiController]
+    [Route("api/musica")]
     public class MusicaController : ControllerBase
     {
         private readonly AppDataContext _context;
@@ -81,7 +81,7 @@ namespace BeatBuds.Controllers
 
         // DELETE: api/Musica/5
         [HttpDelete("{id}")]
-        [Route("deletar")]
+        [Route("deletar/{id}")]
         public async Task<IActionResult> DeleteMusica(int id)
         {
             var musica = await _context.Musica.FindAsync(id);

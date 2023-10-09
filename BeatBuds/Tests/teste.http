@@ -6,9 +6,9 @@ POST https://localhost:7016/api/usuario/cadastrar
 Content-Type: application/json
 
 {
-    "Nome" : "Admin",
-    "Email" : "admin@gmail.com",
-    "Senha" : "Admin"
+    "Nome" : "Admin2",
+    "Email" : "admin2@gmail.com",
+    "Senha" : "Admin2"
 }
 
 ### Deletar Usuarios
