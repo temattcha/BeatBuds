@@ -1,0 +1,15 @@
+### Listar Usuarios
+GET https://localhost:7016/api/usuario/listar
+
+### Cadastrar Usuarios
+POST https://localhost:7016/api/usuario/cadastrar
+Content-Type: application/json
+
+{
+    "Nome" : "Admin",
+    "Email" : "admin@gmail.com",
+    "Senha" : "Admin"
+}
+
+### Deletar Usuarios
+DELETE https://localhost:7016/api/usuario/deletar/5

@@ -19,7 +19,7 @@ namespace BeatBuds.Migrations
 
             modelBuilder.Entity("BeatBuds.Models.AvaliacaoPlaylist", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AvaliacaoPlaylistId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -32,7 +32,7 @@ namespace BeatBuds.Migrations
                     b.Property<int>("UsuarioId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("AvaliacaoPlaylistId");
 
                     b.HasIndex("PlaylistId");
 
@@ -43,29 +43,29 @@ namespace BeatBuds.Migrations
 
             modelBuilder.Entity("BeatBuds.Models.Musica", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MusicaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Album")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("AnoLancamento")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Artista")
-                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CriadoEm")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Titulo")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("MusicaId");
 
                     b.HasIndex("UsuarioId");
 
@@ -74,7 +74,7 @@ namespace BeatBuds.Migrations
 
             modelBuilder.Entity("BeatBuds.Models.MusicaPlaylist", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MusicaPlaylistId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -84,7 +84,7 @@ namespace BeatBuds.Migrations
                     b.Property<int>("PlaylistId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("MusicaPlaylistId");
 
                     b.HasIndex("MusicaId");
 
@@ -95,7 +95,7 @@ namespace BeatBuds.Migrations
 
             modelBuilder.Entity("BeatBuds.Models.Playlist", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PlaylistId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -110,7 +110,7 @@ namespace BeatBuds.Migrations
                     b.Property<int>("UsuarioId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("PlaylistId");
 
                     b.HasIndex("UsuarioId");
 
@@ -119,28 +119,23 @@ namespace BeatBuds.Migrations
 
             modelBuilder.Entity("BeatBuds.Models.Usuario", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UsuarioId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Senha")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("UsuarioId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
+                    b.HasKey("UsuarioId");
 
                     b.ToTable("Usuario");
                 });
@@ -154,7 +149,7 @@ namespace BeatBuds.Migrations
                         .IsRequired();
 
                     b.HasOne("BeatBuds.Models.Usuario", "Usuario")
-                        .WithMany("Avaliacoes")
+                        .WithMany()
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -167,7 +162,7 @@ namespace BeatBuds.Migrations
             modelBuilder.Entity("BeatBuds.Models.Musica", b =>
                 {
                     b.HasOne("BeatBuds.Models.Usuario", "Usuario")
-                        .WithMany("Musicas")
+                        .WithMany()
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -178,7 +173,7 @@ namespace BeatBuds.Migrations
             modelBuilder.Entity("BeatBuds.Models.MusicaPlaylist", b =>
                 {
                     b.HasOne("BeatBuds.Models.Musica", "Musica")
-                        .WithMany("Playlists")
+                        .WithMany()
                         .HasForeignKey("MusicaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -197,7 +192,7 @@ namespace BeatBuds.Migrations
             modelBuilder.Entity("BeatBuds.Models.Playlist", b =>
                 {
                     b.HasOne("BeatBuds.Models.Usuario", "Usuario")
-                        .WithMany("Playlists")
+                        .WithMany()
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -205,34 +200,11 @@ namespace BeatBuds.Migrations
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("BeatBuds.Models.Usuario", b =>
-                {
-                    b.HasOne("BeatBuds.Models.Usuario", null)
-                        .WithMany("Contatos")
-                        .HasForeignKey("UsuarioId");
-                });
-
-            modelBuilder.Entity("BeatBuds.Models.Musica", b =>
-                {
-                    b.Navigation("Playlists");
-                });
-
             modelBuilder.Entity("BeatBuds.Models.Playlist", b =>
                 {
                     b.Navigation("Avaliacoes");
 
                     b.Navigation("Musicas");
-                });
-
-            modelBuilder.Entity("BeatBuds.Models.Usuario", b =>
-                {
-                    b.Navigation("Avaliacoes");
-
-                    b.Navigation("Contatos");
-
-                    b.Navigation("Musicas");
-
-                    b.Navigation("Playlists");
                 });
 #pragma warning restore 612, 618
         }

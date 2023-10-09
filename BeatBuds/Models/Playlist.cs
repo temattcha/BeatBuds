@@ -4,7 +4,7 @@ namespace BeatBuds.Models;
 
 public class Playlist
 {
-    public int Id { get; set; }
+    public int PlaylistId { get; set; }
     public string Nome { get; set; }
     public string Descricao { get; set; }
     

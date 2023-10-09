@@ -16,89 +16,66 @@ namespace BeatBuds.Controllers
             _context = context;
         }
 
-        // GET: api/Musica
         [HttpGet]
         [Route("listar")]
-        public async Task<ActionResult<IEnumerable<Musica>>> GetMusicas()
+        public IActionResult listar()
         {
-            return await _context.Musica.ToListAsync();
-        }
-
-        // GET: api/Musica/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Musica>> GetMusica(int id)
-        {
-            var musica = await _context.Musica.FindAsync(id);
-
-            if (musica == null)
-            {
-                return NotFound();
-            }
-
-            return musica;
-        }
-
-        // POST: api/Musica
-        [HttpPost]
-        [Route("cadastrar")]
-        public async Task<ActionResult<Musica>> PostMusica(Musica musica)
-        {
-            _context.Musica.Add(musica);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetMusica), new { id = musica.Id }, musica);
-        }
-
-        // PUT: api/Musica/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutMusica(int id, Musica musica)
-        {
-            if (id != musica.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(musica).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                List<Musica> musica =
+                    _context.Musica
+                    .Include(x => x.Usuario)
+                    .ToList();
+                return musica.Count == 0 ? NotFound() : Ok(musica);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
-                if (!MusicaExists(id))
+                return BadRequest(e.Message);
+            }
+        }
+        [HttpPost]
+        [Route("cadastrar")]
+        public IActionResult Cadastrar([FromBody] Musica musica)
+        {
+            try
+            {
+                Usuario? usuario =
+                    _context.Usuario.Find(musica.UsuarioId);
+                if (usuario == null)
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
+                musica.Usuario = usuario;
+                _context.Musica.Add(musica);
+                _context.SaveChanges();
+                return Created("", musica);
             }
-
-            return NoContent();
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return BadRequest(e.Message);
+            }
         }
 
-        // DELETE: api/Musica/5
         [HttpDelete("{id}")]
         [Route("deletar/{id}")]
-        public async Task<IActionResult> DeleteMusica(int id)
+        public IActionResult Deletar([FromRoute] int id)
         {
-            var musica = await _context.Musica.FindAsync(id);
-            if (musica == null)
+            try
             {
+                Musica? musicaCadastrada = _context.Musica.Find(id);
+                if (musicaCadastrada != null)
+                {
+                    _context.Musica.Remove(musicaCadastrada);
+                    _context.SaveChanges();
+                    return Ok();
+                }
                 return NotFound();
             }
-
-            _context.Musica.Remove(musica);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool MusicaExists(int id)
-        {
-            return _context.Musica.Any(e => e.Id == id);
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

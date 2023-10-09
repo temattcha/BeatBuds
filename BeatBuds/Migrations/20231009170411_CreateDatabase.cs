@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -14,43 +15,39 @@ namespace BeatBuds.Migrations
                 name: "Usuario",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nome = table.Column<string>(type: "TEXT", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", nullable: false),
-                    Senha = table.Column<string>(type: "TEXT", nullable: false),
-                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: true)
+                    Nome = table.Column<string>(type: "TEXT", nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    Senha = table.Column<string>(type: "TEXT", nullable: true),
+                    CriadoEm = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Usuario", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Usuario_Usuario_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "Usuario",
-                        principalColumn: "Id");
+                    table.PrimaryKey("PK_Usuario", x => x.UsuarioId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Musica",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    MusicaId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Titulo = table.Column<string>(type: "TEXT", nullable: false),
-                    Artista = table.Column<string>(type: "TEXT", nullable: false),
-                    Album = table.Column<string>(type: "TEXT", nullable: false),
+                    Titulo = table.Column<string>(type: "TEXT", nullable: true),
+                    Artista = table.Column<string>(type: "TEXT", nullable: true),
+                    Album = table.Column<string>(type: "TEXT", nullable: true),
                     AnoLancamento = table.Column<int>(type: "INTEGER", nullable: false),
+                    CriadoEm = table.Column<DateTime>(type: "TEXT", nullable: false),
                     UsuarioId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Musica", x => x.Id);
+                    table.PrimaryKey("PK_Musica", x => x.MusicaId);
                     table.ForeignKey(
                         name: "FK_Musica_Usuario_UsuarioId",
                         column: x => x.UsuarioId,
                         principalTable: "Usuario",
-                        principalColumn: "Id",
+                        principalColumn: "UsuarioId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -58,7 +55,7 @@ namespace BeatBuds.Migrations
                 name: "Playlist",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    PlaylistId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Nome = table.Column<string>(type: "TEXT", nullable: false),
                     Descricao = table.Column<string>(type: "TEXT", nullable: false),
@@ -66,12 +63,12 @@ namespace BeatBuds.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Playlist", x => x.Id);
+                    table.PrimaryKey("PK_Playlist", x => x.PlaylistId);
                     table.ForeignKey(
                         name: "FK_Playlist_Usuario_UsuarioId",
                         column: x => x.UsuarioId,
                         principalTable: "Usuario",
-                        principalColumn: "Id",
+                        principalColumn: "UsuarioId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -79,7 +76,7 @@ namespace BeatBuds.Migrations
                 name: "AvaliacaoPlaylist",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    AvaliacaoPlaylistId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     PlaylistId = table.Column<int>(type: "INTEGER", nullable: false),
                     UsuarioId = table.Column<int>(type: "INTEGER", nullable: false),
@@ -87,18 +84,18 @@ namespace BeatBuds.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AvaliacaoPlaylist", x => x.Id);
+                    table.PrimaryKey("PK_AvaliacaoPlaylist", x => x.AvaliacaoPlaylistId);
                     table.ForeignKey(
                         name: "FK_AvaliacaoPlaylist_Playlist_PlaylistId",
                         column: x => x.PlaylistId,
                         principalTable: "Playlist",
-                        principalColumn: "Id",
+                        principalColumn: "PlaylistId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AvaliacaoPlaylist_Usuario_UsuarioId",
                         column: x => x.UsuarioId,
                         principalTable: "Usuario",
-                        principalColumn: "Id",
+                        principalColumn: "UsuarioId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -106,25 +103,25 @@ namespace BeatBuds.Migrations
                 name: "MusicaPlaylist",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    MusicaPlaylistId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     MusicaId = table.Column<int>(type: "INTEGER", nullable: false),
                     PlaylistId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MusicaPlaylist", x => x.Id);
+                    table.PrimaryKey("PK_MusicaPlaylist", x => x.MusicaPlaylistId);
                     table.ForeignKey(
                         name: "FK_MusicaPlaylist_Musica_MusicaId",
                         column: x => x.MusicaId,
                         principalTable: "Musica",
-                        principalColumn: "Id",
+                        principalColumn: "MusicaId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_MusicaPlaylist_Playlist_PlaylistId",
                         column: x => x.PlaylistId,
                         principalTable: "Playlist",
-                        principalColumn: "Id",
+                        principalColumn: "PlaylistId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -156,11 +153,6 @@ namespace BeatBuds.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Playlist_UsuarioId",
                 table: "Playlist",
-                column: "UsuarioId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Usuario_UsuarioId",
-                table: "Usuario",
                 column: "UsuarioId");
         }
 

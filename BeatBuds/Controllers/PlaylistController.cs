@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using BeatBuds.Models;
 using BeatBuds.Data;
 
-[Route("api/playlist")]
 [ApiController]
+[Route("api/playlist")]
 public class PlaylistController : ControllerBase
 {
     private readonly AppDataContext _context;
@@ -19,6 +19,7 @@ public class PlaylistController : ControllerBase
 
     // GET: api/Playlist
     [HttpGet]
+    [Route("listar")]
     public async Task<ActionResult<IEnumerable<Playlist>>> GetPlaylist()
     {
         return await _context.Playlist.ToListAsync();
@@ -40,19 +41,20 @@ public class PlaylistController : ControllerBase
 
     // POST: api/Playlist
     [HttpPost]
+    [Route("cadastrar")]
     public async Task<ActionResult<Playlist>> PostPlaylist(Playlist playlist)
     {
         _context.Playlist.Add(playlist);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction("GetPlaylist", new { id = playlist.Id }, playlist);
+        return CreatedAtAction("GetPlaylist", new { id = playlist.PlaylistId }, playlist);
     }
 
     // PUT: api/Playlist
     [HttpPut("{id}")]
     public async Task<IActionResult> PutPlaylist(int id, Playlist playlist)
     {
-        if (id != playlist.Id)
+        if (id != playlist.PlaylistId)
         {
             return BadRequest();
         }
@@ -80,6 +82,7 @@ public class PlaylistController : ControllerBase
 
     // DELETE: api/Playlist
     [HttpDelete("{id}")]
+    [Route("deletar")]
     public async Task<IActionResult> DeletePlaylist(int id)
     {
         var playlist = await _context.Playlist.FindAsync(id);
@@ -96,6 +99,6 @@ public class PlaylistController : ControllerBase
 
     private bool PlaylistExists(int id)
     {
-        return _context.Playlist.Any(e => e.Id == id);
+        return _context.Playlist.Any(e => e.PlaylistId == id);
     }
 }

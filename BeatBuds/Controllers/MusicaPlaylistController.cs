@@ -8,8 +8,8 @@ using BeatBuds.Data;
 
 namespace BeatBuds.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/musicaPlaylist")]
     public class MusicaPlaylistController : ControllerBase
     {
         private readonly AppDataContext _context;
@@ -21,6 +21,7 @@ namespace BeatBuds.Controllers
 
         // GET: api/MusicaPlaylist
         [HttpGet]
+        [Route("listar")]
         public async Task<ActionResult<IEnumerable<MusicaPlaylist>>> GetMusicaPlaylists()
         {
             return await _context.MusicaPlaylist.ToListAsync();
@@ -42,19 +43,21 @@ namespace BeatBuds.Controllers
 
         // POST: api/MusicaPlaylist
         [HttpPost]
+        [Route("cadastrar")]
         public async Task<ActionResult<MusicaPlaylist>> PostMusicaPlaylist(MusicaPlaylist musicaPlaylist)
         {
             _context.MusicaPlaylist.Add(musicaPlaylist);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetMusicaPlaylist), new { id = musicaPlaylist.Id }, musicaPlaylist);
+            return CreatedAtAction(nameof(GetMusicaPlaylist), new { id = musicaPlaylist.MusicaPlaylistId }, musicaPlaylist);
         }
 
         // PUT: api/MusicaPlaylist/5
         [HttpPut("{id}")]
+        [Route("alterar")]
         public async Task<IActionResult> PutMusicaPlaylist(int id, MusicaPlaylist musicaPlaylist)
         {
-            if (id != musicaPlaylist.Id)
+            if (id != musicaPlaylist.MusicaPlaylistId)
             {
                 return BadRequest();
             }
@@ -82,6 +85,7 @@ namespace BeatBuds.Controllers
 
         // DELETE: api/MusicaPlaylist/5
         [HttpDelete("{id}")]
+        [Route("deletar")]
         public async Task<IActionResult> DeleteMusicaPlaylist(int id)
         {
             var musicaPlaylist = await _context.MusicaPlaylist.FindAsync(id);
@@ -98,7 +102,7 @@ namespace BeatBuds.Controllers
 
         private bool MusicaPlaylistExists(int id)
         {
-            return _context.MusicaPlaylist.Any(e => e.Id == id);
+            return _context.MusicaPlaylist.Any(e => e.MusicaPlaylistId == id);
         }
     }
 }

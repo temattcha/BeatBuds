@@ -43,13 +43,13 @@ namespace BeatBuds.Controllers
             _context.Usuario.Add(usuario);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetUsuario), new { id = usuario.Id }, usuario);
+            return CreatedAtAction(nameof(GetUsuario), new { id = usuario.UsuarioId }, usuario);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
         {
-            if (id != usuario.Id)
+            if (id != usuario.UsuarioId)
             {
                 return BadRequest();
             }
@@ -93,7 +93,7 @@ namespace BeatBuds.Controllers
 
         private bool UsuarioExists(int id)
         {
-            return _context.Usuario.Any(e => e.Id == id);
+            return _context.Usuario.Any(e => e.UsuarioId == id);
         }
     }
 }

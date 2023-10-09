@@ -12,5 +12,5 @@ public class MusicaPlaylist
     public Musica Musica { get; set; }
     public Playlist Playlist { get; set; }
 
-    public int Id { get; set; }
+    public int MusicaPlaylistId { get; set; }
 }
