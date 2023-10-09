@@ -5,8 +5,8 @@ using BeatBuds.Data;
 
 namespace BeatBuds.Controllers
 {
-    [Route("api/usuario")]
     [ApiController]
+    [Route("api/usuario")]
     public class UsuarioController : ControllerBase
     {
         private readonly AppDataContext _context;
@@ -16,14 +16,13 @@ namespace BeatBuds.Controllers
             _context = context;
         }
 
-        // GET: api/Usuario
         [HttpGet]
+        [Route("listar")]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
         {
             return await _context.Usuario.ToListAsync();
         }
 
-        // GET: api/Usuario/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Usuario>> GetUsuario(int id)
         {
@@ -37,8 +36,8 @@ namespace BeatBuds.Controllers
             return usuario;
         }
 
-        // POST: api/Usuario
         [HttpPost]
+        [Route("cadastrar")]
         public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
         {
             _context.Usuario.Add(usuario);
@@ -47,7 +46,6 @@ namespace BeatBuds.Controllers
             return CreatedAtAction(nameof(GetUsuario), new { id = usuario.Id }, usuario);
         }
 
-        // PUT: api/Usuario/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
         {
@@ -77,8 +75,8 @@ namespace BeatBuds.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Usuario/5
         [HttpDelete("{id}")]
+        [Route("deletar/{id}")]
         public async Task<IActionResult> DeleteUsuario(int id)
         {
             var usuario = await _context.Usuario.FindAsync(id);

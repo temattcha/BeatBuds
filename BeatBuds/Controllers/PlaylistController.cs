@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BeatBuds.Models;
-using BeatBuds.Data; // Substitua pelo namespace correto
+using BeatBuds.Data;
 
 [Route("api/playlist")]
 [ApiController]

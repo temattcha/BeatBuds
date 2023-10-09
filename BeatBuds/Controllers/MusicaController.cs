@@ -18,6 +18,7 @@ namespace BeatBuds.Controllers
 
         // GET: api/Musica
         [HttpGet]
+        [Route("listar")]
         public async Task<ActionResult<IEnumerable<Musica>>> GetMusicas()
         {
             return await _context.Musica.ToListAsync();
@@ -39,6 +40,7 @@ namespace BeatBuds.Controllers
 
         // POST: api/Musica
         [HttpPost]
+        [Route("cadastrar")]
         public async Task<ActionResult<Musica>> PostMusica(Musica musica)
         {
             _context.Musica.Add(musica);
@@ -79,6 +81,7 @@ namespace BeatBuds.Controllers
 
         // DELETE: api/Musica/5
         [HttpDelete("{id}")]
+        [Route("deletar")]
         public async Task<IActionResult> DeleteMusica(int id)
         {
             var musica = await _context.Musica.FindAsync(id);
